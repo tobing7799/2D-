@@ -53,13 +53,11 @@ def move_map():
     global dir
     if mario_x>653 and 1250<=2500-map_right and dir==1:
         map_right+=650-mario_x
-        print(mario_x,map_right)
         mario.input_xy(mario_x,mario_y)
     elif mario_x<245 and 0<1250-map_right and dir==-1:
         map_right+= 250-mario_x
         if map_right>1250:
             map_right=1250
-        print(mario_x,map_right)
         mario.input_xy(mario_x,mario_y)
       
     #print(mario_x,map_right)

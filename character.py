@@ -194,7 +194,6 @@ class Mario():
 
     def input_xy(self,x,y):
         self.x=x
-        self.y=y
         
         
 
