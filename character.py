@@ -28,6 +28,8 @@ class Mario():
         self.run_count=0
         
     def draw(self):
+        if self.x < 20:
+            self.x = 20
         self.image.clip_draw(self.frame * self.frame_size_x+self.frame_empty_x, self.frame_y, self.size_x, self.size_y, self.x, self.y,44,60)
     def update(self):
         if self.frame_control==10:
