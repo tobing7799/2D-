@@ -4,8 +4,7 @@ from pico2d import *
 class Mario():
     def __init__(self):
         self.image = load_image('mario-side.png')
-        self.x,self.y=100,100
-        #이미지 조절
+        self.x,self.y=100,100 #시작 좌표
         self.frame=0 #프레임 조절
         self.frame_size_x=27 #프레임 가로 길이 조절
         self.frame_empty_x=16 #이미지 앞에 빈공간 없애주기
