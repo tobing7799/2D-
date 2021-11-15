@@ -23,8 +23,6 @@ def handle_events():
                     mario.right_jump()
                 elif dir==-1:
                     mario.left_jump()
-            #elif event.key==SDLK_DOWN:
-            #    stop=0
         elif event.type ==SDL_KEYUP:
             if event.key ==SDLK_RIGHT:
                 prev_dir=dir
@@ -62,7 +60,6 @@ def move_map():
             map_right=1250
         mario.input_xy(mario_x,mario_y)
       
-    #print(mario_x,map_right)
 open_canvas(800,600)
 
 mario=Mario()
