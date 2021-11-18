@@ -29,16 +29,18 @@ class Mario():
     def draw(self):
         if self.x < 20:
             self.x = 20
+        if self.x > 780:
+            self.x = 780
         self.image.clip_draw(self.frame * self.frame_size_x+self.frame_empty_x, self.frame_y, self.size_x, self.size_y, self.x, self.y,44,60)
     def update(self):
         if self.frame_control==10:
             if self.dir==0:
-                if self.jump==True:
+                if self.jump == True:
                     self.frame_control_jump+=1
                     if self.frame_control_jump<2:
                         self.frame = 0
                     elif self.frame_control_jump<3:
-                        self.frame =1
+                        self.frame = 1
                     elif self.frame_control_jump<4:
                         self.frame = 2
                     elif self.frame_control_jump<7:
@@ -48,21 +50,21 @@ class Mario():
                         self.frame_control_jump=0
                         self.jump = False
                         self.after()
-                elif self.jump==False:
-                    self.frame = (self.frame+1)%6
+                elif self.jump == False:
+                    self.frame = (self.frame+1) % 6
             elif self.dir==1:
-                self.frame = (self.frame-1)%6
+                self.frame = (self.frame-1) % 6
             self.frame_control=0
             
         self.frame_control+=1
         
-        self.x+=self.move_x*2
-        self.y+=self.move_y
+        self.x += self.move_x*2
+        self.y += self.move_y
         if self.jump==True:
             if self.frame_control_jump<3:
-                self.move_y-=0.5
+                self.move_y-=0.8
             elif self.frame_control_jump<4:
-                self.move_y-=0.5
+                self.move_y-=0.8
             elif self.frame_control_jump==4:
                 self.move_y=0
            
@@ -137,7 +139,7 @@ class Mario():
     def left_jump(self):
         if self.jump == False:
             self.frame_control=-1
-            self.move_y=10
+            self.move_y=16
             self.frame=0
             self.frame_size_x= -31
             self.frame_empty_x=1059
@@ -149,7 +151,7 @@ class Mario():
     def right_jump(self):
         if self.jump == False:
             self.frame_control=-1
-            self.move_y=10
+            self.move_y=16
             self.frame=0
             self.frame_size_x=31
             self.frame_empty_x=14
