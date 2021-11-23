@@ -32,6 +32,12 @@ class Monster1():
             self.frame = (self.frame+1) % 9
             self.frame_control = 0
             self.turn_count += 1
+
+        elif self.frame_control == 15 and self.turn == 2:
+            self.turn = 3
+            self.frame_control = 0
+            self.turn_count = 0
+
         if self.turn_count == 30 and self.turn != 2:
             self.turn *= -1
             self.turn_count = 0
@@ -57,6 +63,7 @@ class Monster2():
         self.turn_count = 0
         self.speed = 0.3
         self.frame_y = 62
+        self.timer = 1000
 
     def draw(self):
         if self.turn == 1:
@@ -82,6 +89,20 @@ class Monster2():
             self.turn *= -1
             self.turn_count = 0
             self.speed *= -1
+
+        if self.turn == 2:
+            if self.timer > 0:
+                self.timer -= 1
+            elif self.timer == 0:
+                self.turn = 1
+                self.speed = 0.3
+                self.y += 10
+                self.frame = 0
+                self.frame_control = 0
+                self.turn = 1
+                self.turn_count = 0
+                self.frame_y = 62
+                self.timer = 1000
 
     def change_monster2(self):
         if self.turn != 2:
