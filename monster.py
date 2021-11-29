@@ -47,7 +47,7 @@ class Monster1():
         if self.turn != 2:
             self.turn = 2
             self.speed = 0
-            self.y -= 10
+            self.y = 80
 
 
 class Monster2():
@@ -108,4 +108,4 @@ class Monster2():
         if self.turn != 2:
             self.turn = 2
             self.speed = 0
-            self.y -= 10
+            self.y = 80
