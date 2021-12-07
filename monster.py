@@ -49,7 +49,6 @@ class Monster1():
             self.speed = 0
             self.y = 80
 
-
 class Monster2():
     def __init__(self, x, y):
         self.image1 = load_image('monster2-right-test.png')
