@@ -73,7 +73,6 @@ class Mario():
         elif self.move_x<=-0.5 and self.move_x>=-3:
             self.move_x-=self.run
                 
-            
     def right(self):
         self.speed=0.5
         self.move_x+=self.speed
