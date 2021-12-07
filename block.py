@@ -17,6 +17,7 @@ class Block():
     def change_block(self):
         self.frame = 1
 
+
 class Coin():
     def __init__(self, x, y):
         self.image = load_image('coin.png')
@@ -61,6 +62,7 @@ class Mushroom2():
 
     def update_mushroom2(self, x):
         self.x += x
+
 
 class Flower():
     def __init__(self, x, y):
