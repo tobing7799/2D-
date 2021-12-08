@@ -25,13 +25,24 @@ class Mario():
         self.after_jump=0
         self.run=0.05
         self.run_count=0
+        #캐릭터 크기
+        self.mario_size_x=44
+        self.mario_size_y=60
+        #충돌 타이머
+        self.timer=0
         
     def draw(self):
         if self.x < 20:
             self.x = 20
         if self.x > 780:
             self.x = 780
-        self.image.clip_draw(self.frame * self.frame_size_x+self.frame_empty_x, self.frame_y, self.size_x, self.size_y, self.x, self.y,44,60)
+        draw_rectangle(*self.get_bb())
+        if self.timer > 0:
+            self.timer-=100
+            if self.timer%1000 != 0 and self.timer%500 != 0:
+                self.image.clip_draw(self.frame * self.frame_size_x+self.frame_empty_x, self.frame_y, self.size_x, self.size_y, self.x, self.y,self.mario_size_x,self.mario_size_y)
+        elif self.timer == 0:
+            self.image.clip_draw(self.frame * self.frame_size_x+self.frame_empty_x, self.frame_y, self.size_x, self.size_y, self.x, self.y,self.mario_size_x,self.mario_size_y)
     def update(self):
         if self.frame_control==10:
             if self.dir==0:
@@ -64,7 +75,7 @@ class Mario():
             if self.frame_control_jump<3:
                 self.move_y-=0.8
             elif self.frame_control_jump<4:
-                self.move_y-=0.8
+                 self.move_y-=0.8
             elif self.frame_control_jump==4:
                 self.move_y=0
            
@@ -197,5 +208,25 @@ class Mario():
     def input_xy(self,x,y):
         self.x=x
         
-        
+    def get_bb(self):
+        return self.x-self.mario_size_x/2,self.y-self.mario_size_y/2,self.x+self.mario_size_x/2,self.y+self.mario_size_y/2
 
+    def less_size(self):
+        if self.mario_size_x !=22:
+            self.mario_size_x=22
+            self.y-=15
+            self.mario_size_y=30
+            self.timer=20000
+        
+    def more_size(self):
+        if self.mario_size_x !=44:
+            self.mario_size_x=44
+            self.y+=15
+            self.mario_size_y=60
+
+
+
+
+
+
+    
