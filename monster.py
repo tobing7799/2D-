@@ -49,6 +49,9 @@ class Monster1():
             self.speed = 0
             self.y = 80
 
+    def get_bb(self):
+        return self.x-20,self.y-20,self.x+20,self.y+20
+
 class Monster2():
     def __init__(self, x, y):
         self.image1 = load_image('monster2-right-test.png')
@@ -108,3 +111,6 @@ class Monster2():
             self.turn = 2
             self.speed = 0
             self.y = 80
+
+    def get_bb(self):
+        return self.x-20,self.y-20,self.x+20,self.y+30
