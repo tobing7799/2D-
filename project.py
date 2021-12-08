@@ -48,6 +48,7 @@ def handle_events():
                     title_count = 1
             elif event.key==SDLK_ESCAPE:
                     stop=0
+                    close_canvas()
         elif event.type ==SDL_KEYUP:
             if event.key ==SDLK_RIGHT:
                 prev_dir=dir
@@ -93,6 +94,8 @@ def move_map():
             flower[i].update_flower(650-mario_x)
         for i in range(len(star)):
             star[i].update_star(650-mario_x)
+        for i in range(len(flag)):
+            flag[i].update_flag(650-mario_x)
         mario.input_xy(mario_x, mario_y)
 
     elif mario_x < 245 and 0 < 3000-map_right and dir == -1:
@@ -115,7 +118,24 @@ def move_map():
             flower[i].update_flower(249-mario_x)
         for i in range(len(star)):
             star[i].update_star(249-mario_x)
+        for i in range(len(flag)):
+            flag[i].update_flag(249-mario_x)
         mario.input_xy(mario_x, mario_y)
+
+
+def collide(a, b):
+    left_a, bottom_a, right_a, top_a = a.get_bb()
+    left_b, bottom_b, right_b, top_b = b.get_bb()
+    if left_a > right_b: return 0
+    if right_a < left_b: return 0
+    if top_a < bottom_b: return 0
+    if bottom_a > top_b: return 0
+
+    if bottom_a < top_b:
+        if bottom_a+10 > top_b:
+            return 2
+    
+    return 1
 
 open_canvas(800, 600)
 
@@ -216,6 +236,10 @@ star = []
 
 star.append(Star(3650,340))
 
+flag = []
+
+flag.append(Flag(5800,254))
+
 dir = 0
 prev_dir = 1
 stop = 1
@@ -243,6 +267,8 @@ while stop:
             flower[i].draw()
         for i in range(len(star)):
             star[i].draw()
+        for i in range(len(flag)):
+            flag[i].draw()
         map_left, map_bottom, map_right, map_top=map.map_xy()
         mario_x, mario_y=mario.mario_xy()
         mario.update()
@@ -254,6 +280,69 @@ while stop:
             monster1[i].update_frame_moster1()
         for i in range(len(monster2)):
             monster2[i].update_frame_moster2()
+            
+
+        for i in range(len(block)):
+            if collide(mario,block[i]) > 0:
+                if collide(mario,block[i]) == 1:
+                    pass
+                elif collide(mario,block[i]) == 2:
+                    pass
+        for i in range(len(coin)):
+            if collide(mario,coin[i]) > 0:
+                if collide(mario,coin[i]) == 1:
+                    pass
+                elif collide(mario,coin[i]) == 2:
+                    pass
+        for i in range(len(monster1)):
+            if collide(mario,monster1[i]) > 0:
+                if collide(mario,monster1[i]) == 1:
+                    mario.less_size()
+                    pass
+                elif collide(mario,monster1[i]) == 2:
+                    monster1[i].change_monster1()
+                    pass
+        for i in range(len(monster2)):
+            if collide(mario,monster2[i]) > 0:
+                if collide(mario,monster2[i]) == 1:
+                    mario.less_size()
+                    pass
+                elif collide(mario,monster2[i]) == 2:
+                    monster2[i].change_monster2()
+                    pass
+        for i in range(len(mushroom1)):
+            if collide(mario,mushroom1[i]) > 0:
+                if collide(mario,mushroom1[i]) == 1:
+                    mario.more_size()
+                    pass
+                elif collide(mario,mushroom1[i]) == 2:
+                    mario.more_size()
+                    pass
+        for i in range(len(mushroom2)):
+            if collide(mario,mushroom2[i]) > 0:
+                if collide(mario,mushroom2[i]) == 1:
+                    pass
+                elif collide(mario,mushroom2[i]) == 2:
+                    pass
+        for i in range(len(flower)):
+            if collide(mario,flower[i]) > 0:
+                if collide(mario,flower[i]) == 1:
+                    pass
+                elif collide(mario,flower[i]) == 2:
+                    pass
+        for i in range(len(star)):
+            if collide(mario,star[i]) > 0:
+                if collide(mario,star[i]) == 1:
+                    pass
+                elif collide(mario,star[i]) == 2:
+                    pass
+        for i in range(len(flag)):
+            if collide(mario,flag[i]) > 0:
+                if collide(mario,flag[i]) == 1:
+                    pass
+                elif collide(mario,flag[i]) == 2:
+                    pass
+                
     elif title_count == 0:
         title.draw()
     elif title_count == 2:
