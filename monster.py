@@ -37,6 +37,7 @@ class Monster1():
             self.turn = 3
             self.frame_control = 0
             self.turn_count = 0
+            self.y -= 500
 
         if self.turn_count == 30 and self.turn != 2:
             self.turn *= -1
@@ -52,6 +53,9 @@ class Monster1():
     def get_bb(self):
         return self.x-20,self.y-20,self.x+20,self.y+20
 
+    def monster1_state(self):
+        return self.y
+
 class Monster2():
     def __init__(self, x, y):
         self.image1 = load_image('monster2-right-test.png')
@@ -65,7 +69,7 @@ class Monster2():
         self.turn_count = 0
         self.speed = 0.3
         self.frame_y = 62
-        self.timer = 1000
+        self.timer = 500
 
     def draw(self):
         if self.turn == 1:
@@ -104,7 +108,7 @@ class Monster2():
                 self.turn = 1
                 self.turn_count = 0
                 self.frame_y = 62
-                self.timer = 1000
+                self.timer = 500
 
     def change_monster2(self):
         if self.turn != 2:
@@ -114,3 +118,7 @@ class Monster2():
 
     def get_bb(self):
         return self.x-20,self.y-20,self.x+20,self.y+30
+
+    def monster2_state(self):
+        return self.turn
+    
